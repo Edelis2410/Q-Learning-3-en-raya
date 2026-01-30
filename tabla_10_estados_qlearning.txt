@@ -1,0 +1,289 @@
+======================================================================================================================================================
+TABLA DE 10 ESTADOS VARIADOS - ALGORITMO Q-LEARNING
+======================================================================================================================================================
+
+RESUMEN ESTADÍSTICO:
+• Total de estados aprendidos: 129
+• Estados seleccionados: 10 (representando diferentes niveles de aprendizaje)
+• 'X' = Jugador humano, 'O' = IA, '·' = Casilla vacía
+
+======================================================================================================================================================
+TABLA DE ANÁLISIS DE ESTADOS
+======================================================================================================================================================
+
++--------------------------+--------------------------+--------------------------+-------------------+-------------+-----------------------------------------+
+| Estado (Descripción)      | Representación del Tablero | Acciones Posibles         | Mejor Acción       | Valor Q      | Demostración de Aprendizaje              |
++--------------------------+--------------------------+--------------------------+-------------------+-------------+-----------------------------------------+
+| 1. Tablero Vacío          | [···], [···], [···]       | 9 casillas vacías, 9 con valores Q | (0,0)              | 0.0000       | Estado inicial - base para todas las estrategias |
++--------------------------+--------------------------+--------------------------+-------------------+-------------+-----------------------------------------+
+| 2. Estrategia Avanzada    | [OOX], [·X·], [O·X]       | 3 casillas vacías, 3 con valores Q | (1,0)              | 1.0000       | Alta confianza en jugada óptima o ganadora |
++--------------------------+--------------------------+--------------------------+-------------------+-------------+-----------------------------------------+
+| 3. Juego Intermedio       | [O·X], [·X·], [O··]       | 5 casillas vacías, 5 con valores Q | (1,0)              | 1.0000       | Alta confianza en jugada óptima o ganadora |
++--------------------------+--------------------------+--------------------------+-------------------+-------------+-----------------------------------------+
+| 4. Situación Compleja     | [O··], [·X·], [···]       | 7 casillas vacías, 7 con valores Q | (2,1)              | 0.0000       | Estado equilibrado o en exploración      |
++--------------------------+--------------------------+--------------------------+-------------------+-------------+-----------------------------------------+
+| 5. Empate Forzado         | [OOX], [·XO], [OXX]       | 1 casillas vacías, 1 con valores Q | (1,0)              | 0.6513       | Preferencia clara por estrategia efectiva |
++--------------------------+--------------------------+--------------------------+-------------------+-------------+-----------------------------------------+
+| 6. Aprendizaje Temprano   | [XXO], [OXX], [O·O]       | 1 casillas vacías, 1 con valores Q | (2,1)              | 0.1000       | Aprendizaje inicial en desarrollo        |
++--------------------------+--------------------------+--------------------------+-------------------+-------------+-----------------------------------------+
+| 7. Posición Favorable     | [O·X], [·X·], [OOX]       | 3 casillas vacías, 3 con valores Q | (1,0)              | 0.9529       | Alta confianza en jugada óptima o ganadora |
++--------------------------+--------------------------+--------------------------+-------------------+-------------+-----------------------------------------+
+| 8. Posición Favorable     | [XOX], [OO·], [X··]       | 3 casillas vacías, 3 con valores Q | (1,2)              | 0.9576       | Alta confianza en jugada óptima o ganadora |
++--------------------------+--------------------------+--------------------------+-------------------+-------------+-----------------------------------------+
+| 9. Posición Favorable     | [XOO], [·XO], [X··]       | 3 casillas vacías, 3 con valores Q | (2,2)              | 0.9114       | Alta confianza en jugada óptima o ganadora |
++--------------------------+--------------------------+--------------------------+-------------------+-------------+-----------------------------------------+
+| 10. Posición Favorable    | [XOX], [·X·], [OO·]       | 3 casillas vacías, 3 con valores Q | (2,2)              | 0.8499       | Alta confianza en jugada óptima o ganadora |
++--------------------------+--------------------------+--------------------------+-------------------+-------------+-----------------------------------------+
+
+======================================================================================================================================================
+ANÁLISIS DETALLADO DEL APRENDIZAJE
+======================================================================================================================================================
+
+VARIEDAD DE ESTADOS SELECCIONADOS:
+1. Tablero Vacío
+2. Estrategia Avanzada
+3. Juego Intermedio
+4. Situación Compleja
+5. Empate Forzado
+6. Aprendizaje Temprano
+7. Posición Favorable
+8. Posición Favorable
+9. Posición Favorable
+10. Posición Favorable
+
+INTERPRETACIÓN DE VALORES Q:
+• 0.900 - 1.000: Jugada ganadora segura
+• 0.700 - 0.899: Estrategia altamente efectiva
+• 0.400 - 0.699: Jugada buena con ventaja
+• 0.100 - 0.399: Preferencia desarrollada
+• 0.000 - 0.099: Aprendizaje en progreso
+• Negativos: Jugadas que conducen a derrota
+
+ANÁLISIS POR ESTADO:
+----------------------------------------------------------------------------------------------------
+
+1. Tablero Vacío
+  Tablero:
+    · | · | ·
+    ---+---+---
+    · | · | ·
+    ---+---+---
+    · | · | ·
+
+  Top 3 acciones aprendidas:
+    1. (0,0): Q = 0.0000
+    2. (0,1): Q = 0.0000
+    3. (0,2): Q = 0.0000
+
+  Estadísticas:
+  • Valor Q promedio: 0.0000
+  • Mejor valor Q: 0.0000
+  • Peor valor Q: 0.0000
+  • Número de acciones: 9
+
+  ¿Qué demuestra este estado?
+  Estado inicial fundamental. Todas las estrategias parten de esta configuración. Muestra cómo el agente considera las primeras jugadas.
+----------------------------------------------------------------------------------------------------
+
+2. Estrategia Avanzada
+  Tablero:
+    O | O | X
+    ---+---+---
+    · | X | ·
+    ---+---+---
+    O | · | X
+
+  Top 3 acciones aprendidas:
+    1. (1,0): Q = 1.0000
+    2. (2,1): Q = 0.0000
+    3. (1,2): Q = 0.0000
+
+  Estadísticas:
+  • Valor Q promedio: 0.3333
+  • Mejor valor Q: 1.0000
+  • Peor valor Q: 0.0000
+  • Número de acciones: 3
+
+  ¿Qué demuestra este estado?
+  Manejo de situaciones complejas con 3 casillas vacías. Demuestra capacidad para analizar múltiples líneas de juego.
+----------------------------------------------------------------------------------------------------
+
+3. Juego Intermedio
+  Tablero:
+    O | · | X
+    ---+---+---
+    · | X | ·
+    ---+---+---
+    O | · | ·
+
+  Top 3 acciones aprendidas:
+    1. (1,0): Q = 1.0000
+    2. (0,1): Q = 0.0000
+    3. (1,2): Q = 0.0000
+
+  Estadísticas:
+  • Valor Q promedio: 0.2000
+  • Mejor valor Q: 1.0000
+  • Peor valor Q: 0.0000
+  • Número de acciones: 5
+
+  ¿Qué demuestra este estado?
+  Toma de decisiones en fase media (5 casillas vacías). Muestra desarrollo de preferencias estratégicas basadas en experiencia.
+----------------------------------------------------------------------------------------------------
+
+4. Situación Compleja
+  Tablero:
+    O | · | ·
+    ---+---+---
+    · | X | ·
+    ---+---+---
+    · | · | ·
+
+  Top 3 acciones aprendidas:
+    1. (2,1): Q = 0.0000
+    2. (0,1): Q = 0.0000
+    3. (0,2): Q = 0.0000
+
+  Estadísticas:
+  • Valor Q promedio: 0.0000
+  • Mejor valor Q: 0.0000
+  • Peor valor Q: 0.0000
+  • Número de acciones: 7
+
+  ¿Qué demuestra este estado?
+  Múltiples opciones con valores similares. Indica situaciones donde varias jugadas son igualmente buenas o donde el agente aún explora.
+----------------------------------------------------------------------------------------------------
+
+5. Empate Forzado
+  Tablero:
+    O | O | X
+    ---+---+---
+    · | X | O
+    ---+---+---
+    O | X | X
+
+  Top 3 acciones aprendidas:
+    1. (1,0): Q = 0.6513
+
+  Estadísticas:
+  • Valor Q promedio: 0.6513
+  • Mejor valor Q: 0.6513
+  • Peor valor Q: 0.6513
+  • Número de acciones: 1
+
+  ¿Qué demuestra este estado?
+  Gestión inteligente de posiciones difíciles. Con solo 1 casilla(s) vacía(s), valora positivamente forzar empates como alternativa a la derrota.
+----------------------------------------------------------------------------------------------------
+
+6. Aprendizaje Temprano
+  Tablero:
+    X | X | O
+    ---+---+---
+    O | X | X
+    ---+---+---
+    O | · | O
+
+  Top 3 acciones aprendidas:
+    1. (2,1): Q = 0.1000
+
+  Estadísticas:
+  • Valor Q promedio: 0.1000
+  • Mejor valor Q: 0.1000
+  • Peor valor Q: 0.1000
+  • Número de acciones: 1
+
+  ¿Qué demuestra este estado?
+  Desarrollo inicial de preferencias. Valores Q bajos indican las primeras señales de aprendizaje antes de desarrollar confianza fuerte.
+----------------------------------------------------------------------------------------------------
+
+7. Posición Favorable
+  Tablero:
+    O | · | X
+    ---+---+---
+    · | X | ·
+    ---+---+---
+    O | O | X
+
+  Top 3 acciones aprendidas:
+    1. (1,0): Q = 0.9529
+    2. (0,1): Q = 0.0000
+    3. (1,2): Q = 0.0000
+
+  Estadísticas:
+  • Valor Q promedio: 0.3176
+  • Mejor valor Q: 0.9529
+  • Peor valor Q: 0.0000
+  • Número de acciones: 3
+
+  ¿Qué demuestra este estado?
+  Posición ventajosa con valores Q positivos. Indica que el agente identifica y aprovecha situaciones favorables.
+----------------------------------------------------------------------------------------------------
+
+8. Posición Favorable
+  Tablero:
+    X | O | X
+    ---+---+---
+    O | O | ·
+    ---+---+---
+    X | · | ·
+
+  Top 3 acciones aprendidas:
+    1. (1,2): Q = 0.9576
+    2. (2,1): Q = 0.2710
+    3. (2,2): Q = 0.0000
+
+  Estadísticas:
+  • Valor Q promedio: 0.4095
+  • Mejor valor Q: 0.9576
+  • Peor valor Q: 0.0000
+  • Número de acciones: 3
+
+  ¿Qué demuestra este estado?
+  Posición ventajosa con valores Q positivos. Indica que el agente identifica y aprovecha situaciones favorables.
+----------------------------------------------------------------------------------------------------
+
+9. Posición Favorable
+  Tablero:
+    X | O | O
+    ---+---+---
+    · | X | O
+    ---+---+---
+    X | · | ·
+
+  Top 3 acciones aprendidas:
+    1. (2,2): Q = 0.9114
+    2. (2,1): Q = 0.0000
+    3. (1,0): Q = 0.0000
+
+  Estadísticas:
+  • Valor Q promedio: 0.3038
+  • Mejor valor Q: 0.9114
+  • Peor valor Q: 0.0000
+  • Número de acciones: 3
+
+  ¿Qué demuestra este estado?
+  Posición ventajosa con valores Q positivos. Indica que el agente identifica y aprovecha situaciones favorables.
+----------------------------------------------------------------------------------------------------
+
+10. Posición Favorable
+  Tablero:
+    X | O | X
+    ---+---+---
+    · | X | ·
+    ---+---+---
+    O | O | ·
+
+  Top 3 acciones aprendidas:
+    1. (2,2): Q = 0.8499
+    2. (1,0): Q = 0.0000
+    3. (1,2): Q = 0.0000
+
+  Estadísticas:
+  • Valor Q promedio: 0.2833
+  • Mejor valor Q: 0.8499
+  • Peor valor Q: 0.0000
+  • Número de acciones: 3
+
+  ¿Qué demuestra este estado?
+  Posición ventajosa con valores Q positivos. Indica que el agente identifica y aprovecha situaciones favorables.
+----------------------------------------------------------------------------------------------------

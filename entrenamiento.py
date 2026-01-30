@@ -1,4 +1,8 @@
-import numpy as np
+"""
+Entrena un agente de IA para jugar tres en raya usando Q-Learning.
+Proceso: 20,000 episodios de entrenamiento con exploración/explotación.
+Genera 'q_table_20000.pkl' con el conocimiento aprendido.
+"""
 import pickle
 import random
 import os
@@ -361,7 +365,7 @@ def main():
     
     # Verificar si ya existe un modelo entrenado
     if os.path.exists('q_table_20000.pkl'):
-        print("\n⚠️  Ya existe un modelo entrenado (q_table_20000.pkl)")
+        print("\n  Ya existe un modelo entrenado (q_table_20000.pkl)")
         response = input("¿Deseas reentrenar desde cero? (s/n): ").lower()
         
         if response != 's':

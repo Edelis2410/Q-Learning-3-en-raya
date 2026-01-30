@@ -1,3 +1,8 @@
+"""
+Interfaz Pygame para jugar contra la IA entrenada con Q-Learning.
+Tablero interactivo, turnos, estadísticas y visualización de resultados.
+Requiere el archivo q_table_20000.pkl generado por el entrenamiento.
+"""
 import pygame
 import sys
 import time

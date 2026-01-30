@@ -1,3 +1,10 @@
+"""
+Este módulo implementa el agente de Q-Learning entrenado.
+Contiene:
+- QLearningAgent: Clase que maneja la tabla Q cargada del entrenamiento
+- GameState: Clase que controla el estado del juego durante partidas
+
+"""
 
 import pickle
 import random
