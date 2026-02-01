@@ -5,7 +5,7 @@ Instala PyGame:
 pip install pygame
 
 Entrena la IA (ejecuta primero):
-python entrenamiento_q_learning_20000.py
+python entrenamiento.py
 
 Juega contra la IA:
 python interfaz.py
